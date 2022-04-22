@@ -25,7 +25,12 @@ function sendToDb() {
                 },
             })
                 .then((response) => response.json())
-                .then(() => {
+                .then((newTransactions) => {
+                    transations = 
+                    [...transactions, ...newTransactions]
+                    populateTotal();
+                    populateTable();
+                    populateChart();
                     const expense = db.transaction("expense", "readwrite")
                     const expenseObjectStore =
                         expense.objectStore("expense");
