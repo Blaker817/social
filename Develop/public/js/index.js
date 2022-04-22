@@ -151,4 +151,3 @@ document.querySelector("#add-btn").onclick = function() {
 document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);
 };
-navigator.serviceWorker.register("./sw.js").then(()=>console.log("ServiceWorkerRegistra")).catch((e)=>console.log(e))

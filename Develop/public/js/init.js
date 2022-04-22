@@ -1,0 +1,1 @@
+navigator.serviceWorker.register("./sw.js").then(()=>console.log("ServiceWorkerRegistra")).catch((e)=>console.log(e))
