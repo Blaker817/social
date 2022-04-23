@@ -26,7 +26,7 @@ function sendToDb() {
             })
                 .then((response) => response.json())
                 .then((newTransactions) => {
-                    transations = 
+                    transactions = 
                     [...transactions, ...newTransactions]
                     populateTotal();
                     populateTable();
