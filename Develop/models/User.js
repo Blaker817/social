@@ -13,6 +13,10 @@ const userSchema = new Schema({
     unique: true,
     required: true,
   },
+  friends: {
+    type: [String],
+    required: false,
+  }
 });
 
 const User = mongoose.model("User", userSchema);

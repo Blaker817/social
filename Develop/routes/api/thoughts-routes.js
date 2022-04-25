@@ -1,55 +1,51 @@
 const router = require("express").Router();
-const {} = require("../../models");
+const { Thought } = require("../../models");
 
 // The `/api/categories` endpoint
 
 router.get("/", (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
-  // Category.findAll({}).then((data) => {
-  //   res.json(data);
-  // });
+  Thought.find({
+
+  }).then(data => {
+    res.json(data)
+  })
 });
 
 router.get("/:id", (req, res) => {
   console.log(req.params.id);
-  // find one category by its `id` value
-  // be sure to include its associated Products
-  // Category.findAll({
-  //   where: { id: req.params.id },
-  //   include: [{ model: Product }],
-  // }).then((data) => {
-  //   res.json(data);
-  // });
+  Thought.find({
+    _id: req.params.id
+  }).then(data => {
+    res.json(data)
+  }).catch((error) => {
+    res.status(404).json(error);
+  })
 });
 
 router.post("/", (req, res) => {
-  // create a new category
-  console.log(req.body);
-  // Category.create({ category_name: req.body.category_name }).then((data) => {
-  //   res.json(data);
-  // });
+  Thought.create(req.body).then((thought) => {
+    res.json(thought);
+  }).catch((error) => {
+    res.status(404).json(error);
+  })
 });
 
 router.put("/:id", (req, res) => {
-  // update a category by its `id` value
-  // Category.update(
-  //   { category_name: req.body.category_name },
-  //   {
-  //     where: { id: req.params.id },
-  //   }
-  // ).then((data) => {
-  //   res.json(data);
-  // });
+  Thought.updateOne({ _id: req.params.id }, { thought_text: req.body.thought_text }).then((thought) => {
+    res.json(thought);
+  }).catch((error) => {
+    res.status(404).json(error);
+  })
 });
 
 router.delete("/:id", (req, res) => {
-  // delete a category by its `id` value
-  // Category.destroy({
-  //   where: { id: req.params.id },
-  // }).then((data) => {
-  //   res.json(data);
-  // });
+
+  Thought.findByIdAndDelete(req.params.id).then((data) => {
+    res.json(data);
+  })
+  .catch((error) => {
+    res.status(404).json(error);
+  })
 });
 
 module.exports = router;
